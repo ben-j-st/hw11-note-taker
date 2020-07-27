@@ -7,9 +7,13 @@
 
 Task was to build the server code for a few pre-existing pages of a website allowing the user to write a note and have it record to a db.json file, then they could go back over past notes or delete notes that they no longer needed
 
+## Application
+
+Link to <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Live Website</a> via Heroku
+
 ## Table of Contents
 
-* <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Application</a>
+* [Application](#Application)
 * [Description](#Description)
 * [Installation](#Installation)
 * [Usage](#Usage)
