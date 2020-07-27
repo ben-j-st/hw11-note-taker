@@ -24,10 +24,6 @@ app.use(express.json());
 // =============================================================
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "public", "notes.html"));
-});
-
 app.get("/api/notes", async function(req, res) {
     //read db.json and return all notes
     try {
@@ -100,6 +96,10 @@ app.delete("/api/notes:id", async function(req, res) {
     // } catch (err) {
     //     console.log(err)
     // }
+});
+
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "public", "notes.html"));
 });
 
 app.get("*", function(req, res) {
