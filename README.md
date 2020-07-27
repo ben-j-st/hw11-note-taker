@@ -9,7 +9,7 @@ Task was to build the server code for a few pre-existing pages of a website allo
 
 ## Table of Contents
 
-* <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">[Application]</a>
+* <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Application</a>
 * [Description](#Description)
 * [Installation](#Installation)
 * [Usage](#Usage)
