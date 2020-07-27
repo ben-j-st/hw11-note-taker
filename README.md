@@ -47,4 +47,4 @@ Email: ben_j_stephens@hotmail.com
 
 ## Screenshot 
 
-![alt name](file location)
+![screenshot](public/img/note.PNG)
