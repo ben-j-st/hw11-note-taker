@@ -9,7 +9,7 @@ Task was to build the server code for a few pre-existing pages of a website allo
 
 ## Table of Contents
 
-* [Application](https://afternoon-mesa-72858.herokuapp.com/)
+* <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">[Application]</a>
 * [Description](#Description)
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -20,7 +20,7 @@ Task was to build the server code for a few pre-existing pages of a website allo
 
 ## Installation
 
-express, and uuid, application can be run as is from <a href="https://afternoon-mesa-72858.herokuapp.com/">Heroku</a>
+express, and uuid, application can be run as is from <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Heroku</a>
 
 ## Usage
 
