@@ -9,7 +9,7 @@ Task was to build the server code for a few pre-existing pages of a website allo
 
 ## Application
 
-Link to <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Live Website</a> via Heroku
+Link to <a target="_blank" href="https://afternoon-mesa-72858.herokuapp.com/" >Live Website</a> via Heroku
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ Link to <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Li
 
 ## Installation
 
-express, and uuid, application can be run as is from <a href="https://afternoon-mesa-72858.herokuapp.com/" target="_blank">Heroku</a>
+express, and uuid, application can be run as is from <a target="_blank" href="https://afternoon-mesa-72858.herokuapp.com/" >Heroku</a>
 
 ## Usage
 
