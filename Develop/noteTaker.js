@@ -28,14 +28,16 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "public", "notes.html"));
 });
 
-app.get("/api/notes", function(req, res) {
+app.get("/api/notes", async function(req, res) {
     //read db.json and return all notes
-    
-    fs.readFile(path.join(__dirname, "db", "db.json"), function(err, data) {
-        if (err) throw err; 
-        res.json(JSON.parse(data)) 
-    });
-    
+    try {
+        notesData = await notesTemp(path.join(__dirname, "db", "db.json"));
+
+        res.json(JSON.parse(notesData))
+    } catch (err) {
+        if(err) throw err;
+    }
+
 });
 
 app.post("/api/notes", async function(req, res) {
@@ -59,10 +61,11 @@ app.post("/api/notes", async function(req, res) {
             }
         })
 
+        console.log(notesData)
         //send object back to website
         res.json(notesData);
     } catch(err) {
-        throw err;
+       if (err) throw err;
     }
     
 });
@@ -70,27 +73,34 @@ app.post("/api/notes", async function(req, res) {
 app.delete("/api/notes:id", async function(req, res) {
     // should receive a query containing the id of a note to delete
     // need to read file, find matching id, delete the note, rewrite the file
+    console.log("app.delete was run")
+    // notesData = fs.readFileSync(path.join(__dirname, "db", "db.json"));
 
-    notesData = fs.readFileSync(path.join(__dirname, "db", "db.json"))
-    try {
-        notesData = JSON.parse(notesData);
+    // try {
+    //     notesData = JSON.parse(notesData);
+    //     console.log("got notes Data inside .delete")
+    //     console.log(notesData)
+    //     console.log("---------------- \n")
+    //     notesData = await notesData.filter(function(note) {
+    //         // figure out != (!= req.params.id;)
+    //         console.log("filter function inside delete was called")
+    //         console.log("----------------\n")
+    //         console.log("note.id = " + note.id);
+    //         console.log("req.param.id = " + req.param.id);
+    //         return note.id = req.param.id;
+    //     });
 
-        notesData = await notesData.filter(function(note) {
-            // figure out !=
-            return note.id != req.params.id;
-        });
+    //     //turn to string so we can write to file
+    //     await writeFileAsync(path.join(__dirname, "db", "db.json"), JSON.stringify(notesData), function(err) {
+    //         if(err) throw err;
 
-        //turn to string so we can write to file
-        await writeFileAsync(path.join(__dirname, "db", "db.json"), JSON.stringify(notesData), function(err) {
-            if(err) throw err;
+    //         res.send(notesData)
+    //     })
 
-            res.send(notesData)
-        })
-
-    } catch (err) {
-        if (err) throw err;
-    }
-})
+    // } catch (err) {
+    //     console.log(err)
+    // }
+});
 
 app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
