@@ -57,7 +57,7 @@ app.post("/api/notes", async function(req, res) {
             }
         })
 
-        console.log(notesData)
+        // console.log(notesData)
         //send object back to website
         res.json(notesData);
     } catch(err) {
@@ -66,36 +66,28 @@ app.post("/api/notes", async function(req, res) {
     
 });
 
-app.delete("/api/notes:id", async function(req, res) {
-    // should receive a query containing the id of a note to delete
-    // need to read file, find matching id, delete the note, rewrite the file
-    console.log("app.delete was run")
-    // notesData = fs.readFileSync(path.join(__dirname, "db", "db.json"));
+app.delete("/api/notes/:id", async function (req, res) {
+    notesData = fs.readFileSync("./db/db.json", "utf8");
 
-    // try {
-    //     notesData = JSON.parse(notesData);
-    //     console.log("got notes Data inside .delete")
-    //     console.log(notesData)
-    //     console.log("---------------- \n")
-    //     notesData = await notesData.filter(function(note) {
-    //         // figure out != (!= req.params.id;)
-    //         console.log("filter function inside delete was called")
-    //         console.log("----------------\n")
-    //         console.log("note.id = " + note.id);
-    //         console.log("req.param.id = " + req.param.id);
-    //         return note.id = req.param.id;
-    //     });
+    try {
 
-    //     //turn to string so we can write to file
-    //     await writeFileAsync(path.join(__dirname, "db", "db.json"), JSON.stringify(notesData), function(err) {
-    //         if(err) throw err;
+        notesData = JSON.parse(notesData);
 
-    //         res.send(notesData)
-    //     })
+        notesData = await notesData.filter(function (note) {
+            console.log(req.param.id)
+            console.log(note.id)
+            
+            return note.id != req.params.id;
+        });
 
-    // } catch (err) {
-    //     console.log(err)
-    // }
+        await writeFileAsync("./db/db.json", JSON.stringify(notesData), "utf8", function (err) {
+
+            res.send(notesData);
+        });
+    } catch (err) {
+        console.log(err);
+
+    }
 });
 
 app.get("/notes", function(req, res) {
