@@ -1,31 +1,50 @@
-# hw11-note-taker
-a application to take, save and delete saved notes using node, express and heroku
+#  Note Taker - node, express and heroku  
+
+    
+<div align="right"><img alt="licence badge" src="https://img.shields.io/badge/licence-MIT-yellow"></div>
+
+## Description 
+
+Task was to build the server code for a few pre-existing pages of a website allowing the user to write a note and have it record to a db.json file, then they could go back over past notes or delete notes that they no longer needed
+
+## Table of Contents
+
+* [Description](#Description)
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [Licence](#Licence)
+* [Contributing](#Contributing)
+* [Tests](#Tests)
+* [Questions](#Questions)
+
+## Installation
+
+express, and uuid, application can be run as is from <a href="https://afternoon-mesa-72858.herokuapp.com/">Heroku</a>
+
+## Usage
+
+allows the storage of notes on a .json file, to retrieve previous notes, and to delete notes once they are no longer necessary 
+
+## Licence 
+
+MIT
+
+A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code. see full licence at https://choosealicense.com/licenses/mit/
+
+## Contributing 
+
+Trilogy provided the front end webpages and some existing javscript
+
+## Tests
 
 
+## Questions
 
-psedo code
-let idNum = 0
+Github Username: <a href="https://github.com/ben-j-st">ben-j-st</a>
 
-const noteArray = [
- {
-   new note object gets pushed in 
- }
-]
+Email: ben_j_stephens@hotmail.com
 
-const note = {
-   {
-    id: idNum,
-    text: ""
-  }
-}
-when pushing a new note idNum++
 
-home page
-  - button for load all notes 
-  - button for create new notes
+## Screenshot 
 
-new notes 
-  - text box with the unique name. 
-  - take the val of the object to get the string. 
-  - send to the server 
-  - 
+![alt name](file location)
