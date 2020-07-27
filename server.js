@@ -73,10 +73,7 @@ app.delete("/api/notes/:id", async function (req, res) {
 
         notesData = JSON.parse(notesData);
 
-        notesData = await notesData.filter(function (note) {
-            console.log(req.param.id)
-            console.log(note.id)
-            
+        notesData = await notesData.filter(function (note) {           
             return note.id != req.params.id;
         });
 
