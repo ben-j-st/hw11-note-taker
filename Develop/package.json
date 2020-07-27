@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node noteTaker.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon noteTaker.js"
+    "watch": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
