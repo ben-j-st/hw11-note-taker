@@ -3,6 +3,13 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const { v4: uuidv4 } = require('uuid');
+const util = require("util")
+
+// //ReadandWrite
+// // =============================================================
+const writeFileAsync = util.promisify(fs.writeFile);
+const notesTemp = util.promisify(fs.readFile);
 
 // Sets up the Express App
 // =============================================================
@@ -31,29 +38,58 @@ app.get("/api/notes", function(req, res) {
     
 });
 
-app.post("/api/notes", function(req, res) {
-    // // should receive a new note to save to the request body add to the db.json file
-    // //then return the new note to the client
+app.post("/api/notes", async function(req, res) {
+    try {
+        // read file and create notes object so we can manipulate
+        notesData = await notesTemp(path.join(__dirname, "db", "db.json"));
+        
+        notesData = JSON.parse(notesData)
+        //uses the unique npm package to generate random id 
+        req.body.id = uuidv4();
 
-    const newNote = req.body
-    console.log(newNote)
+        //push the new note to the note array as an object 
+        notesData.push(req.body);
 
-    // fs.appendFile(path.join(__dirname, "db", "db.json"), newNote, function(err) {
-    //     if(err) {
-    //         console.log(err)
-    //     } else {
-    //         console.log(success)
-    //     }
-    // })
+        //turn to string so we can write to file
+        await writeFileAsync(path.join(__dirname, "db", "db.json"), JSON.stringify(notesData), function(err) {
+            if(err) {
+                console.log(err)
+            } else {
+                console.log("success")
+            }
+        })
+
+        //send object back to website
+        res.json(notesData);
+    } catch(err) {
+        throw err;
+    }
+    
 });
 
-app.delete("/api/notes:id", function(req, res) {
+app.delete("/api/notes:id", async function(req, res) {
     // should receive a query containing the id of a note to delete
     // need to read file, find matching id, delete the note, rewrite the file
 
-    // create an object from the db.json file, then use delete to select based on title
-    // either use the new information and append the file
-    // or creat a new object and rewrite the file according to that data
+    notesData = fs.readFileSync(path.join(__dirname, "db", "db.json"))
+    try {
+        notesData = JSON.parse(notesData);
+
+        notesData = await notesData.filter(function(note) {
+            // figure out !=
+            return note.id != req.params.id;
+        });
+
+        //turn to string so we can write to file
+        await writeFileAsync(path.join(__dirname, "db", "db.json"), JSON.stringify(notesData), function(err) {
+            if(err) throw err;
+
+            res.send(notesData)
+        })
+
+    } catch (err) {
+        if (err) throw err;
+    }
 })
 
 app.get("*", function(req, res) {
